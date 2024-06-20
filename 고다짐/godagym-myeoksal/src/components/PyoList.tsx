@@ -8,7 +8,7 @@ interface PropType {
 const PyoList = (props: PropType) => {
   return (
     <Header>
-      <span style={{ fontSize: "0.8rem" }}>{props.inbodys.name}</span>
+      <span style={{ fontSize: "0.775rem" }}>{props.inbodys.name}</span>
       <span>{props.inbodys.first}</span>
       <span>{props.inbodys.second}</span>
       <span>{props.inbodys.third}</span>

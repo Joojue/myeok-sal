@@ -16,6 +16,7 @@ import BasicModal from "../components/BasicModal";
 import KGInput from "../components/KGInput";
 import Comments from "../components/Comments";
 import { Chip } from "../App.style";
+import { getItem } from "../utils/localstorage";
 
 const Detail = () => {
   const { id } = useParams();
@@ -28,8 +29,8 @@ const Detail = () => {
   const handleClose = () => setOpen(false);
 
   const updateHandler = (name: string, input: DocumentData) => {
-    updateData(name, input).then(() => {
-      getInfo(idToName[Number(id)]).then((result) => {
+    updateData(name, input, getItem("team")).then(() => {
+      getInfo(idToName[Number(id)], getItem("team")).then((result) => {
         setInfo(result);
       });
     });
@@ -38,16 +39,20 @@ const Detail = () => {
   };
 
   useEffect(() => {
-    getInfo(idToName[Number(id)]).then((result) => {
+    getInfo(idToName[Number(id)], getItem("team")).then((result) => {
       setInfo(result);
     });
   }, [id]);
 
   useEffect(() => {
-    getInfo("팀성공여부").then((result) => {
+    getInfo("팀성공여부", getItem("team")).then((result) => {
       if (result?.isSucc) {
-        updateData(idToName[Number(id)], { state: "team" }).then(() => {
-          getInfo(idToName[Number(id)]).then((result) => {
+        updateData(
+          idToName[Number(id)],
+          { state: "team" },
+          getItem("team")
+        ).then(() => {
+          getInfo(idToName[Number(id)], getItem("team")).then((result) => {
             setInfo(result);
           });
         });
@@ -56,14 +61,22 @@ const Detail = () => {
           info?.first + info?.second + info?.third + info?.fourth >
           info?.total
         )
-          updateData(idToName[Number(id)], { state: "indi" }).then(() => {
-            getInfo(idToName[Number(id)]).then((result) => {
+          updateData(
+            idToName[Number(id)],
+            { state: "indi" },
+            getItem("team")
+          ).then(() => {
+            getInfo(idToName[Number(id)], getItem("team")).then((result) => {
               setInfo(result);
             });
           });
         else {
-          updateData(idToName[Number(id)], { state: "ing" }).then(() => {
-            getInfo(idToName[Number(id)]).then((result) => {
+          updateData(
+            idToName[Number(id)],
+            { state: "ing" },
+            getItem("team")
+          ).then(() => {
+            getInfo(idToName[Number(id)], getItem("team")).then((result) => {
               setInfo(result);
             });
           });
@@ -81,15 +94,18 @@ const Detail = () => {
         <img
           src="/images/white-left-arrow.svg"
           style={{ width: "24px", cursor: "pointer", color: "white" }}
-          onClick={() => navigator("/")}
+          onClick={() => navigator("/list")}
         />
         <span style={{ fontSize: "1rem", padding: "0.5rem 1rem" }}>
-          오로지 팀성공 팀원 {info?.name}
+          {getItem("team")} 팀원 {info?.name}
         </span>
       </ListHeader>
-      <DarkContainer>
+      <DarkContainer style={{ height: "100%" }}>
         <DetailImgWrap>
-          <img src={info?.img} />
+          <img
+            src={info?.img}
+            style={{ width: "128px", objectFit: "contain" }}
+          />
         </DetailImgWrap>
         <DetailProfileBox>
           <p>{info?.name}</p>

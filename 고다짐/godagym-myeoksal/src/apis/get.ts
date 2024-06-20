@@ -11,8 +11,8 @@ import {
 } from "firebase/firestore";
 import { db } from "../firebase";
 
-export const getData = async () => {
-  const querySnapshot = await getDocs(collection(db, "users"));
+export const getData = async (team: string) => {
+  const querySnapshot = await getDocs(collection(db, team));
 
   const inbodys: DocumentData = [];
   querySnapshot.forEach((doc) => {
@@ -22,21 +22,25 @@ export const getData = async () => {
   return inbodys;
 };
 
-export const getInfo = async (id: string) => {
-  const docRef = await getDoc(doc(db, "users", id));
+export const getInfo = async (id: string, team: string) => {
+  const docRef = await getDoc(doc(db, team, id));
   return docRef.data();
 };
 
-export const updateData = async (name: string, updatedData: DocumentData) => {
-  const docRef = doc(db, "users", name);
+export const updateData = async (
+  name: string,
+  updatedData: DocumentData,
+  team: string
+) => {
+  const docRef = doc(db, team, name);
 
   await updateDoc(docRef, updatedData).then((result) => {
     return result;
   });
 };
 
-export const getComments = async (name: string) => {
-  const docRef = collection(db, "users", name, "comments");
+export const getComments = async (name: string, team: string) => {
+  const docRef = collection(db, team, name, "comments");
   const q = query(docRef, orderBy("time", "desc"));
   const querySnapshot = await getDocs(q);
   const inbodys: DocumentData = [];
@@ -47,8 +51,12 @@ export const getComments = async (name: string) => {
   return inbodys;
 };
 
-export const postComments = async (name: string, content: string) => {
-  const docRef = doc(collection(db, "users", name, "comments"));
+export const postComments = async (
+  name: string,
+  content: string,
+  team: string
+) => {
+  const docRef = doc(collection(db, team, name, "comments"));
   await setDoc(docRef, {
     content: content,
     time: new Date(),

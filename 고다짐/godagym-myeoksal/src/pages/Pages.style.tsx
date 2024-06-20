@@ -9,9 +9,10 @@ export const PageWrap = styled.div`
 
 export const DarkContainer = styled.div`
   margin-top: 4rem;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: black;
   border-top: 2px solid #f7f7f7;
   color: white;
+  height: 100vh;
 `;
 
 export const ListHeader = styled.header`
@@ -21,11 +22,12 @@ export const ListHeader = styled.header`
   max-width: 500px;
   height: 4rem;
   display: flex;
-  padding: 1rem;
+  padding: 0.5rem;
   box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: black;
+  z-index: 1;
   color: white;
 
   p {
@@ -35,9 +37,8 @@ export const ListHeader = styled.header`
   span {
     background-color: #fc711c;
     font-weight: 600;
-    padding: 0.25rem 0.75rem;
+    padding: 0.5rem 1rem;
     border-radius: 15px;
-    font-size: 0.775rem;
     color: white;
     cursor: pointer;
   }
@@ -140,4 +141,17 @@ export const StyledInput = styled.input`
       color: transparent;
     }
   }
+`;
+
+export const SelectTeamWrap = styled.div`
+  background-color: #474747;
+  border-radius: 0.35rem;
+  margin-top: 1.5rem;
+  min-height: 124px;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 `;

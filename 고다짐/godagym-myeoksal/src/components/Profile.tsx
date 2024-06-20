@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { DocumentData } from "firebase/firestore";
 import { getComments, getInfo } from "../apis/get";
 import { Comment } from "../types/comments";
+import { getItem } from "../utils/localstorage";
 
 interface PropType {
   inbodys: Inbodys;
@@ -17,13 +18,13 @@ const Profile = (props: PropType) => {
   const [comments, setComments] = useState<DocumentData>();
 
   useEffect(() => {
-    getComments(props.inbodys.name).then((result) => {
+    getComments(props.inbodys.name, getItem("team")).then((result) => {
       setComments(result);
     });
   }, [props.inbodys.name]);
 
   useEffect(() => {
-    getInfo("팀성공여부").then((result) => {
+    getInfo("팀성공여부", getItem("team")).then((result) => {
       if (result?.isSucc) {
         setIsSucc(true);
       } else {
@@ -33,8 +34,14 @@ const Profile = (props: PropType) => {
   }, []);
 
   return (
-    <Section onClick={() => navigator(`/${props.inbodys.id}`)}>
-      <img src={props.inbodys.img} style={{ width: "84px" }} />
+    <Section
+      onClick={() => navigator(`/${props.inbodys.id}`)}
+      style={{ cursor: "pointer" }}
+    >
+      <img
+        src={props.inbodys.img}
+        style={{ width: "84px", objectFit: "contain" }}
+      />
       <ProfileBox>
         <p style={{ fontWeight: 700 }}>{props.inbodys.name}</p>
         <p style={{ color: "#dfedfc" }}>{props.inbodys.kind}형</p>

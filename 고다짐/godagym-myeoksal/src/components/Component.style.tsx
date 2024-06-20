@@ -54,11 +54,23 @@ export const CheerBox = styled.div`
   }
 `;
 
-export const CommentsBox = styled.div`
+export const CommentsWrap = styled.div`
   width: 80%;
+  max-height: 8.5rem;
+  overflow-y: auto;
+  margin: auto;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #fc711c;
+    border-radius: 25px;
+  }
+`;
+
+export const CommentsBox = styled.div`
   display: flex;
   align-items: center;
-  margin: auto;
   span {
     font-size: 0.875rem;
     padding: 0.25rem 0.25rem;

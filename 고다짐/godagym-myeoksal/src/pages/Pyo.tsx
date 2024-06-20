@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { DocumentData } from "firebase/firestore";
 import { getData } from "../apis/get";
 import { Inbodys } from "../types/inbody";
+import { getItem } from "../utils/localstorage";
 
 const Pyo = () => {
   const [teamMates, setTeamMates] = useState<DocumentData>([]);
@@ -19,7 +20,7 @@ const Pyo = () => {
   );
 
   useEffect(() => {
-    getData().then((result) => {
+    getData(getItem("team")).then((result) => {
       setTeamMates(result.slice(0, 6));
     });
   }, []);
@@ -27,7 +28,7 @@ const Pyo = () => {
   return (
     <Wrap>
       <Container>
-        <Link to="/">
+        <Link to="/list">
           <span>
             <img
               src="/images/left-arrow.svg"
@@ -35,8 +36,8 @@ const Pyo = () => {
             />
           </span>
         </Link>
-        <h3>빼바오 '오로지 팀성공'</h3>
-        <Header style={{ fontWeight: 700 }}>
+        <h3>빼바오 '{getItem("team")}'</h3>
+        <Header style={{ fontWeight: 700, fontSize: "0.775rem" }}>
           <span>팀원</span>
           <span>1주차</span>
           <span>2주차</span>
