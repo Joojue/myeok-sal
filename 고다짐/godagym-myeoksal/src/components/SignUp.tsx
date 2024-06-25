@@ -12,22 +12,28 @@ const SignUp = () => {
           id="outlined-basic"
           label="핸드폰"
           variant="outlined"
+          inputProps={{
+            autoComplete: "off", // 자동 완성 비활성화
+          }}
           sx={{
             "& .MuiOutlinedInput-root": {
-              fontSize: "0.775rem",
               color: "#fc711c",
               fontFamily: "Arial",
               fontWeight: "bold",
               "& .MuiOutlinedInput-notchedOutline": {
-                color: "#fc711c",
-                borderColor: "#fc711c",
-                borderWidth: "1px",
+                borderColor: "#fc711c", // 여기서 경계 색상 적용
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#fc711c", // 포커스 시 경계 색상 적용
               },
             },
             "& .MuiInputLabel-outlined": {
               fontSize: "0.775rem",
               color: "#fc711c",
               fontWeight: "bold",
+              "&.Mui-focused": {
+                color: "#fc711c", // 포커스 시 라벨 색상 적용
+              },
             },
           }}
         />
@@ -37,22 +43,29 @@ const SignUp = () => {
           id="outlined-basic"
           label="비밀번호"
           variant="outlined"
+          type="password"
+          inputProps={{
+            autoComplete: "off", // 자동 완성 비활성화
+          }}
           sx={{
             "& .MuiOutlinedInput-root": {
-              fontSize: "0.775rem",
               color: "#fc711c",
               fontFamily: "Arial",
               fontWeight: "bold",
               "& .MuiOutlinedInput-notchedOutline": {
-                color: "#fc711c",
-                borderColor: "#fc711c",
-                borderWidth: "1px",
+                borderColor: "#fc711c", // 여기서 경계 색상 적용
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#fc711c", // 포커스 시 경계 색상 적용
               },
             },
             "& .MuiInputLabel-outlined": {
               fontSize: "0.775rem",
               color: "#fc711c",
               fontWeight: "bold",
+              "&.Mui-focused": {
+                color: "#fc711c", // 포커스 시 라벨 색상 적용
+              },
             },
           }}
         />
@@ -62,22 +75,29 @@ const SignUp = () => {
           id="outlined-basic"
           label="비밀번호 확인"
           variant="outlined"
+          type="password"
+          inputProps={{
+            autoComplete: "off", // 자동 완성 비활성화
+          }}
           sx={{
             "& .MuiOutlinedInput-root": {
-              fontSize: "0.775rem",
               color: "#fc711c",
               fontFamily: "Arial",
               fontWeight: "bold",
               "& .MuiOutlinedInput-notchedOutline": {
-                color: "#fc711c",
-                borderColor: "#fc711c",
-                borderWidth: "1px",
+                borderColor: "#fc711c", // 여기서 경계 색상 적용
+              },
+              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#fc711c", // 포커스 시 경계 색상 적용
               },
             },
             "& .MuiInputLabel-outlined": {
               fontSize: "0.775rem",
               color: "#fc711c",
               fontWeight: "bold",
+              "&.Mui-focused": {
+                color: "#fc711c", // 포커스 시 라벨 색상 적용
+              },
             },
           }}
         />
