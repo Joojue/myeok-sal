@@ -3,8 +3,8 @@ import List from "./pages/List";
 import Pyo from "./pages/Pyo";
 import Detail from "./pages/Detail";
 import "./App.css";
-import Select from "./pages/Select";
 import ScrollToTop from "./utils/ScrollToTop";
+import Login from "./pages/Login";
 
 function App() {
   const router = createBrowserRouter([
@@ -14,7 +14,7 @@ function App() {
       children: [
         {
           index: true,
-          element: <Select />,
+          element: <Login />,
         },
         {
           path: "list",

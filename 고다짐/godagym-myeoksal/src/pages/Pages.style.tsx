@@ -144,14 +144,36 @@ export const StyledInput = styled.input`
 `;
 
 export const SelectTeamWrap = styled.div`
-  background-color: #474747;
   border-radius: 0.35rem;
-  margin-top: 1.5rem;
-  min-height: 124px;
-  text-align: center;
-  overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+`;
+
+export const LoginWrap = styled.div`
+  width: 70%;
+  margin: auto;
+  margin-top: 1rem;
+  text-align: center;
+`;
+
+export const LoginBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 70%;
+  margin: auto;
+  margin-bottom: 0.5rem;
+  button {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.625rem;
+    outline: none;
+    border: none;
+    background-color: #fc711c;
+    color: white;
+    font-family: "Pretendard Variable";
+    font-size: 1rem;
+    cursor: pointer;
+  }
 `;
