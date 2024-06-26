@@ -1,10 +1,10 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import List from "./pages/List";
-import Pyo from "./pages/Pyo";
 import Detail from "./pages/Detail";
 import "./App.css";
 import ScrollToTop from "./utils/ScrollToTop";
 import Login from "./pages/Login";
+import Team from "./pages/Team";
 
 function App() {
   const router = createBrowserRouter([
@@ -16,13 +16,10 @@ function App() {
           index: true,
           element: <Login />,
         },
+        { path: "team", element: <Team /> },
         {
           path: "list",
           element: <List />,
-        },
-        {
-          path: "pyo",
-          element: <Pyo />,
         },
         {
           path: "/:id",

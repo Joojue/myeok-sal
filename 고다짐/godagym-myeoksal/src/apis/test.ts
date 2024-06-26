@@ -1,6 +1,6 @@
-import axios from "axios";
+import { api } from ".";
 
 export const getTest = async () => {
-  const res = await axios.get("http://himchan.synology.me:30005/guide/list");
+  const res = await api.get("/guide/list");
   return res.data;
 };

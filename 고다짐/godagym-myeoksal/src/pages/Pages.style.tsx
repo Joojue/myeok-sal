@@ -12,7 +12,8 @@ export const DarkContainer = styled.div`
   background-color: black;
   border-top: 2px solid #f7f7f7;
   color: white;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 `;
 
 export const ListHeader = styled.header`
@@ -35,6 +36,7 @@ export const ListHeader = styled.header`
     font-weight: 700;
   }
   span {
+    font-size: 0.875rem;
     background-color: #fc711c;
     font-weight: 600;
     padding: 0.5rem 1rem;
@@ -147,12 +149,27 @@ export const SelectTeamWrap = styled.div`
   border-radius: 0.35rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  padding: 1rem;
+  padding-top: 0;
+  box-sizing: border-box;
+`;
+
+export const TeamWrap = styled.div`
+  width: 100%;
+  height: 120px;
+  background-color: #ffd5ba;
+  color: #fc711c;
+  line-height: 120px;
+  text-align: center;
+  margin-top: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
 `;
 
 export const LoginWrap = styled.div`
-  width: 70%;
+  width: 80%;
   margin: auto;
   margin-top: 1rem;
   text-align: center;
@@ -161,7 +178,7 @@ export const LoginWrap = styled.div`
 export const LoginBtn = styled.div`
   display: flex;
   justify-content: center;
-  width: 70%;
+  width: 100%;
   margin: auto;
   margin-bottom: 0.5rem;
   button {
@@ -176,4 +193,16 @@ export const LoginBtn = styled.div`
     font-size: 1rem;
     cursor: pointer;
   }
+`;
+
+export const TeamSticker = styled.div`
+  width: 3.5rem;
+  height: 1rem;
+  line-height: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.25rem 0.25rem;
+  background-color: #ffd5ba;
+  color: #fc711c;
+  font-size: 0.775rem;
 `;

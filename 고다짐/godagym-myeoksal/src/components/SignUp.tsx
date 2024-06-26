@@ -1,113 +1,52 @@
-import { TextField } from "@mui/material";
-import { LoginBtn, LoginWrap } from "../pages/Pages.style";
+import { LoginBtn } from "../pages/Pages.style";
+import { lengCalc } from "../utils/lengCalc";
+import TextInput from "./TextInput";
+import { useState } from "react";
 
-const SignUp = () => {
+interface PropType {
+  handleClose: () => void;
+}
+
+const SignUp = (props: PropType) => {
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [pwd2, setPwd2] = useState("");
+
+  const signHandler = () => {
+    if (lengCalc(id) || lengCalc(name) || lengCalc(pwd) || lengCalc(pwd2)) {
+      alert("모든 항목을 입력해주세요.");
+      return;
+    }
+    console.log(id, name, pwd);
+    props.handleClose();
+  };
+
   return (
-    <div>
+    <>
       <div style={{ width: "40%", margin: "auto" }}>
         <img src="/images/logo-big-white.png" style={{ width: "100%" }} />
       </div>
-      <LoginWrap style={{ marginTop: 0 }}>
-        <TextField
-          id="outlined-basic"
-          label="핸드폰"
-          variant="outlined"
-          inputProps={{
-            autoComplete: "off", // 자동 완성 비활성화
-          }}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              color: "#fc711c",
-              fontFamily: "Arial",
-              fontWeight: "bold",
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#fc711c", // 여기서 경계 색상 적용
-              },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#fc711c", // 포커스 시 경계 색상 적용
-              },
-            },
-            "& .MuiInputLabel-outlined": {
-              fontSize: "0.775rem",
-              color: "#fc711c",
-              fontWeight: "bold",
-              "&.Mui-focused": {
-                color: "#fc711c", // 포커스 시 라벨 색상 적용
-              },
-            },
-          }}
-        />
-      </LoginWrap>
-      <LoginWrap>
-        <TextField
-          id="outlined-basic"
-          label="비밀번호"
-          variant="outlined"
-          type="password"
-          inputProps={{
-            autoComplete: "off", // 자동 완성 비활성화
-          }}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              color: "#fc711c",
-              fontFamily: "Arial",
-              fontWeight: "bold",
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#fc711c", // 여기서 경계 색상 적용
-              },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#fc711c", // 포커스 시 경계 색상 적용
-              },
-            },
-            "& .MuiInputLabel-outlined": {
-              fontSize: "0.775rem",
-              color: "#fc711c",
-              fontWeight: "bold",
-              "&.Mui-focused": {
-                color: "#fc711c", // 포커스 시 라벨 색상 적용
-              },
-            },
-          }}
-        />
-      </LoginWrap>
-      <LoginWrap>
-        <TextField
-          id="outlined-basic"
+      <div style={{ width: "100%" }}>
+        <TextInput label="아이디" value={id} setValue={setId} small />
+        <TextInput label="닉네임" value={name} setValue={setName} small />
+        <TextInput label="비밀번호" value={pwd} setValue={setPwd} small />
+        <TextInput
+          style={{ marginBottom: "1rem" }}
           label="비밀번호 확인"
-          variant="outlined"
-          type="password"
-          inputProps={{
-            autoComplete: "off", // 자동 완성 비활성화
-          }}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              color: "#fc711c",
-              fontFamily: "Arial",
-              fontWeight: "bold",
-              "& .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#fc711c", // 여기서 경계 색상 적용
-              },
-              "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                borderColor: "#fc711c", // 포커스 시 경계 색상 적용
-              },
-            },
-            "& .MuiInputLabel-outlined": {
-              fontSize: "0.775rem",
-              color: "#fc711c",
-              fontWeight: "bold",
-              "&.Mui-focused": {
-                color: "#fc711c", // 포커스 시 라벨 색상 적용
-              },
-            },
-          }}
+          value={pwd2}
+          setValue={setPwd2}
+          small
         />
-      </LoginWrap>
-      <div style={{ marginTop: "1rem", width: "100%" }}>
+      </div>
+      <div style={{ width: "80%", margin: "auto" }}>
         <LoginBtn>
-          <button>회원가입</button>
+          <button style={{ letterSpacing: 3 }} onClick={signHandler}>
+            회원가입완료
+          </button>
         </LoginBtn>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -7,6 +7,7 @@ import {
   StyledInput,
   StyledSelect,
 } from "../pages/Pages.style";
+import { lengCalc } from "../utils/lengCalc";
 
 interface PropType {
   updateHandler: (name: string, input: DocumentData) => void;
@@ -44,7 +45,7 @@ const KGInput = (props: PropType) => {
             week === "none"
               ? alert("주차를 선택해주세요")
               : props.updateHandler(idToName[props.id], {
-                  [week]: kg.trim().length === 0 ? null : Number(kg),
+                  [week]: lengCalc(kg) ? null : Number(kg),
                 })
           }
         >

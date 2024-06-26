@@ -1,37 +1,56 @@
 import {
   DarkContainer,
   LoginBtn,
-  LoginWrap,
   PageWrap,
   SelectTeamWrap,
 } from "./Pages.style";
 
-import { TextField } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import BasicModal from "../components/BasicModal";
 import SignUp from "../components/SignUp";
-import { getTest } from "../apis/test";
+import TextInput from "../components/TextInput";
+import { useNavigate } from "react-router-dom";
+import { lengCalc } from "../utils/lengCalc";
 
 const Login = () => {
+  const navigator = useNavigate();
+
   const [open, setOpen] = useState<boolean>(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  useEffect(() => {
-    getTest()
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, []);
+  const [id, setId] = useState("");
+  const [idError, setIdError] = useState(false);
+
+  const [pwd, setPwd] = useState("");
+  const [pwdError, setPwdError] = useState(false);
+
+  const loginHandler = () => {
+    if (lengCalc(id)) {
+      setIdError(true);
+      return;
+    } else {
+      setIdError(false);
+      if (lengCalc(pwd)) {
+        setPwdError(true);
+        return;
+      } else {
+        setPwdError(false);
+
+        //api 로직
+        console.log(id, pwd);
+        setId("");
+        setPwd("");
+        navigator("/team");
+      }
+    }
+  };
 
   return (
     <PageWrap>
       <BasicModal open={open} handleClose={handleClose}>
-        <SignUp />
+        <SignUp handleClose={handleClose} />
       </BasicModal>
       <DarkContainer
         style={{
@@ -50,70 +69,31 @@ const Login = () => {
           }}
         >
           <SelectTeamWrap>
-            <LoginWrap>
-              <TextField
-                id="outlined-basic"
-                label="Phone"
-                variant="outlined"
-                inputProps={{
-                  autoComplete: "off", // 자동 완성 비활성화
-                }}
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    color: "#fc711c",
-                    fontFamily: "Arial",
-                    fontWeight: "bold",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#fc711c", // 여기서 경계 색상 적용
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#fc711c", // 포커스 시 경계 색상 적용
-                    },
-                  },
-                  "& .MuiInputLabel-outlined": {
-                    color: "#fc711c",
-                    fontWeight: "bold",
-                    "&.Mui-focused": {
-                      color: "#fc711c", // 포커스 시 라벨 색상 적용
-                    },
-                  },
-                }}
+            <div style={{ marginBottom: "1rem" }}>
+              <TextInput
+                label="ID"
+                value={id}
+                setValue={setId}
+                error={idError}
+                helperText="아이디를 입력해주세요."
               />
-            </LoginWrap>
-            <LoginWrap>
-              <TextField
-                id="outlined-basic"
+              <TextInput
                 label="Password"
-                variant="outlined"
                 type="password"
-                inputProps={{
-                  autoComplete: "off", // 자동 완성 비활성화
-                }}
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    color: "#fc711c",
-                    fontFamily: "Arial",
-                    fontWeight: "bold",
-                    "& .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#fc711c", // 여기서 경계 색상 적용
-                    },
-                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-                      borderColor: "#fc711c", // 포커스 시 경계 색상 적용
-                    },
-                  },
-                  "& .MuiInputLabel-outlined": {
-                    color: "#fc711c",
-                    fontWeight: "bold",
-                    "&.Mui-focused": {
-                      color: "#fc711c", // 포커스 시 라벨 색상 적용
-                    },
-                  },
+                value={pwd}
+                setValue={setPwd}
+                error={pwdError}
+                helperText="비밀번호를 입력해주세요."
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.nativeEvent.isComposing) {
+                    loginHandler();
+                  }
                 }}
               />
-            </LoginWrap>
-            <div style={{ marginTop: "1rem", width: "100%" }}>
+            </div>
+            <div style={{ width: "80%", margin: "auto" }}>
               <LoginBtn>
-                <button>로그인</button>
+                <button onClick={loginHandler}>로그인</button>
               </LoginBtn>
               <LoginBtn>
                 <button onClick={handleOpen}>회원가입</button>

@@ -6,6 +6,7 @@ import { Comment } from "../types/comments";
 import { CommentsBox, CommentsWrap } from "./Component.style";
 import { OpenBtn, StyledInput } from "../pages/Pages.style";
 import { getItem } from "../utils/localstorage";
+import { lengCalc } from "../utils/lengCalc";
 
 interface PropType {
   id: number;
@@ -18,7 +19,7 @@ const Comments = (props: PropType) => {
   const [input, setInput] = useState("");
 
   const postHandler = () => {
-    if (input.trim().length === 0) {
+    if (lengCalc(input)) {
       alert("내용을 입력해주세요");
       return;
     } else {

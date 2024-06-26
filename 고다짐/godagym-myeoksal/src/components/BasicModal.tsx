@@ -34,7 +34,6 @@ const StyledBtn = styled.button`
   outline: none;
   border: none;
   background-color: inherit;
-
   font-size: 1.25rem;
   cursor: pointer;
 `;
@@ -46,7 +45,7 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: "inherit",
   maxHeight: 800,
-  minWidth: 300,
+  minWidth: 250,
   overflowY: "scroll",
   bgcolor: "background.paper",
   border: "1px solid #000",
